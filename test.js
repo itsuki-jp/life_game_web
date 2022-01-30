@@ -10,7 +10,7 @@ function copyMatrix(base) {
 
 // ---------- 変数 ----------
 const h = 140;
-const w = 25;
+const w = 250;
 const size_w = 5;
 const size_h = 5;
 const dead = 0;
