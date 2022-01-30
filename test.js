@@ -33,7 +33,7 @@ let ctx = null;
 let cells = null;
 
 
-
+// 描写ボタンが押されたら動く、色々と初期化するやつ
 const init = () => {
     // ---------- サイズの取得 ----------
     h = parseInt(document.getElementById("h").value || 100);
