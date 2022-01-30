@@ -9,7 +9,17 @@
 </head>
 
 <body>
-    <div id="life_game"></div>
+    <p>デフォルトの設定は、縦:100, 横:100, 縦のピクセル:5, 横のピクセル:5</p>
+    <div>
+        <input id="h" type="text" placeholder="縦">
+        <input id="w" type="text" placeholder="横">
+        <input id="size_h" type="text" placeholder="縦のピクセル">
+        <input id="size_w" type=" text " placeholder="横のピクセル ">
+        <button id="btn_set" onclick="init()">描写する</button>
+    </div>
+    <div id="life_game">
+        <div></div>
+    </div>
     <script src="test.js"></script>
 
 </body>

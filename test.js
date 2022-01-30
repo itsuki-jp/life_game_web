@@ -9,12 +9,8 @@ function copyMatrix(base) {
 
 
 // ---------- 変数 ----------
-const h = 100;
-const w = 200;
-const size_w = 5;
-const size_h = 5;
 const dead = 0;
-const alive = 1;
+let alive = 1;
 const direction = [
     [0, 1],
     [0, -1],
@@ -25,36 +21,55 @@ const direction = [
     [-1, -1],
     [-1, 1]
 ];
-
-// ---------- HTMLに出力するための準備 ----------
-const life_game = document.getElementById("life_game");
-const canvas = document.createElement("canvas");
-canvas.width = size_w * w;
-canvas.height = size_h * h;
-life_game.appendChild(canvas)
-const ctx = canvas.getContext("2d");
+let h = null;
+let w = null;
+let size_w = null;
+let size_h = null;
 
 
-
-// ---------- 色を指定 ----------
-ctx.strokeStyle = "black"; // 線の色
-ctx.fillStyle = "red"; // 塗りつぶしの色
+let life_game = null;
+let canvas = null;
+let ctx = null;
+let cells = null;
 
 
 
-// ---------- 初期化 ----------
-let cells = Array(h).fill().map(() => Array(w).fill(dead));
-for (let i = 0; i < h; i++) {
-    for (let j = 0; j < w; j++) {
-        let dead_or_alive = Math.floor(Math.random() * 2);
-        if (dead_or_alive) {
-            ctx.fillRect(j * size_w, i * size_h, size_w, size_h);
-            cells[i][j] = alive;
+const init = () => {
+    // ---------- サイズの取得 ----------
+    h = parseInt(document.getElementById("h").value || 100);
+    w = parseInt(document.getElementById("w").value || 100);
+    size_w = parseInt(document.getElementById("size_w").value || 5);
+    size_h = parseInt(document.getElementById("size_h").value || 5);
+
+    // ---------- HTMLに出力するための準備 ----------
+    life_game = document.getElementById("life_game");
+    life_game.lastElementChild.remove();
+    canvas = document.createElement("canvas");
+    canvas.width = size_w * w;
+    canvas.height = size_h * h;
+    life_game.appendChild(canvas);
+    ctx = canvas.getContext("2d");
+
+    // ---------- 色を指定 ----------
+    ctx.strokeStyle = "black"; // 線の色
+    ctx.fillStyle = "red"; // 塗りつぶしの色
+
+    // ---------- 初期化 ----------
+    cells = Array(h).fill().map(() => Array(w).fill(dead));
+    for (let i = 0; i < h; i++) {
+        for (let j = 0; j < w; j++) {
+            let dead_or_alive = Math.floor(Math.random() * 2);
+            if (dead_or_alive) {
+                ctx.fillRect(j * size_w, i * size_h, size_w, size_h);
+                cells[i][j] = alive;
+            }
         }
     }
+    setInterval(main, 1000);
 }
 
 const main = () => {
+    console.log("main");
     let new_cells = copyMatrix(cells);
     for (let i = 0; i < h; i++) {
         let temp_i = i * size_h;
@@ -85,5 +100,3 @@ const main = () => {
     }
     cells = copyMatrix(new_cells);
 }
-
-setInterval(main, 1000);
