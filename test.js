@@ -9,8 +9,8 @@ function copyMatrix(base) {
 
 
 // ---------- 変数 ----------
-const h = 140;
-const w = 250;
+const h = 100;
+const w = 200;
 const size_w = 5;
 const size_h = 5;
 const dead = 0;
@@ -56,9 +56,7 @@ for (let i = 0; i < h; i++) {
 console.log(cells);
 
 const main = () => {
-    console.log("start");
     let new_cells = copyMatrix(cells);
-    console.log(cells);
     for (let i = 0; i < h; i++) {
         let temp_i = i * size_h;
         for (let j = 0; j < w; j++) {
