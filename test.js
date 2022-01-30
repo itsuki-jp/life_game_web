@@ -53,7 +53,6 @@ for (let i = 0; i < h; i++) {
         }
     }
 }
-console.log(cells);
 
 const main = () => {
     let new_cells = copyMatrix(cells);
